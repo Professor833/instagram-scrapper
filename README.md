@@ -1,2 +1,2 @@
 # Instagram-scrapper
-Scrape Instagram User Data From Hashtag
+Django App for collecting followers of a Hashtag to Analyze the performance of a hashtag.
