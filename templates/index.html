@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>Instagram Web Crawler</title>
+    <style>
+        .main__wrapper {
+            display: flex;
+            margin: 0px 30px;
+        }
+    </style>
+</head>
+<body>
+<header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                 viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl">IG Scraper</span>
+        </a>
+        <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+            <a class="mr-5 hover:text-gray-900" href="/calculate_instagram_engagement">Calculate Instagram
+                Engagement</a>
+            {#<a class="mr-5 hover:text-gray-900">Second Link</a>#}
+        </nav>
+    </div>
+</header>
+<div class="main__wrapper">
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Instagram Hashtag Crawler
+                    #</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Lorem ipsum dolor sit amet, consectetur
+                    adipisicing elit. Consequuntur dolore dolorem illum ipsa natus nobis quas totam. Corporis dolore
+                    recusandae reprehenderit.</p>
+            </div>
+            <div class="flex lg:w-2/3 w-full sm:flex-row flex-col mx-auto px-8 sm:space-x-4 sm:space-y-0 space-y-4 sm:px-0 items-end">
+                <div class="relative flex-grow w-full">
+                    <label for="text" class="leading-7 text-sm text-gray-600">Enter the hashtag to search</label>
+                    <form action="/get_hashtag_details/">
+                        {% csrf_token %}
+                        <div class="flex gap-3">
+                            <input type="text" id="hashtag_inp" name="hashtag_inp"
+                                   class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            <button type="submit"
+                                    class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                            >
+                                Search
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="text-red-100" id="error_msg"></p>
+{#            <button class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">#}
+{#                Download#}
+{#            </button>#}
+        </div>
+    </section>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    /*
+    $("form").on("submit", function (e) {
+        let hashtag_inp = document.getElementById("hashtag_inp").value
+        let token = '{{ csrf_token }}'
+
+        $.ajax({
+            type: "POST",
+            url: "/get_hashtag_details/",
+            data: {"tag": `${hashtag_inp}`},
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRFToken', token);
+                xhr.setRequestHeader('X-CSRFToken', token);
+            },
+            success: function () {
+
+            }
+        });
+
+        e.preventDefault();
+    });
+    */
+
+    /*
+    function submit_form(e) {
+        e.preventDefault();
+        let hashtag_inp = document.getElementById("hashtag_inp").value
+        $.ajax({
+            type: "POST",
+            url: "/get_hashtag_details/",
+            data: {hashtag: hashtag_inp},
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRFToken', token);
+            },
+            success: function (response) {
+                {#location.reload("{% url 'manage' %}" + '#subscription-detail');#}
+
+            },
+            error: function (data) {
+                {#show_error_message('#max-count-errors', data["responseText"])#}
+                document.getElementById("error_msg").innerText = "Couldn't get the data at the moment!"
+            },
+            complete: function () {
+                {#$(button).removeAttr('disabled')#}
+                {#$(button).text(before_submit_text)#}
+            }
+        });
+    }
+    */
+
+</script>
+</body>
+</html>

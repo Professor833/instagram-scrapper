@@ -5,6 +5,12 @@ name = "pypi"
 
 [packages]
 django = "*"
+instaloader = "*"
+pandas = "*"
+selenium = "*"
+aiohttp = "*"
+requests = "*"
+instagramy = "*"
 
 [dev-packages]
 
