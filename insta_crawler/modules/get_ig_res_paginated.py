@@ -17,7 +17,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
-import time
+import os
 import pandas as pd
 from .count_number_of_followers import count_followers_from_username
 from pathlib import Path
@@ -25,13 +25,16 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # CHROME_DRIVER_PATH = Path(BASE_DIR, "..", 'chromedriver.exe')
-GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+# GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+# CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+
+chrome_bin = os.environ.get('GOOGLE_CHROME_SHIM', None)
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-chrome_options.binary_location = GOOGLE_CHROME_PATH
+chrome_options.binary_location = chrome_bin
+
 
 def merge_dicts(dict1, dict2):
     """merge the fields of current + prev dict"""
@@ -213,7 +216,6 @@ def instagram_tags_scraper(username, password, tag, page=0, max_id=""):
     driver.close()
 
     return tag_followers_dict
-
 
 # tag_to_search = 'aassdd'
 # # tag_to_search = 'cat'
