@@ -45,7 +45,7 @@ def merge_dicts(dict1, dict2):
 
 def instagram_tags_scraper(username, password, tag, page=0, max_id=""):
     # driver = webdriver.Chrome(CHROME_DRIVER_PATH)
-    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path="chromedriver", chrome_options=chrome_options)
     print(f'-----STARTED FETCHING DATA FOR #{tag}------')
 
     tag_followers_dict = {
