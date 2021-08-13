@@ -24,8 +24,14 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-CHROME_DRIVER_PATH = Path(BASE_DIR, "..", 'chromedriver.exe')
+# CHROME_DRIVER_PATH = Path(BASE_DIR, "..", 'chromedriver.exe')
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.binary_location = GOOGLE_CHROME_PATH
 
 def merge_dicts(dict1, dict2):
     """merge the fields of current + prev dict"""
@@ -35,7 +41,8 @@ def merge_dicts(dict1, dict2):
 
 
 def instagram_tags_scraper(username, password, tag, page=0, max_id=""):
-    driver = webdriver.Chrome(CHROME_DRIVER_PATH)
+    # driver = webdriver.Chrome(CHROME_DRIVER_PATH)
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     print(f'-----STARTED FETCHING DATA FOR #{tag}------')
 
     tag_followers_dict = {
