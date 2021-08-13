@@ -12,6 +12,7 @@ aiohttp = "*"
 requests = "*"
 instagramy = "*"
 gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 
