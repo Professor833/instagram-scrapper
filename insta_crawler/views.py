@@ -8,7 +8,8 @@ from .forms import CalculateInstagramEngagement
 
 
 # Create your views here.
-
+username = "josh_gates1111"
+password = "FhwgRpV%b3y8ZdrM"
 
 def home(request):
     return render(request, 'index.html')
@@ -40,8 +41,8 @@ def get_hashtag_details(request):
     if request.method == 'POST':
         tag = request.POST["tag"]
         print("tag >> ", tag)
-        user_n = 'jennifergoenka'
-        passwd = '111213'
+        user_n = username
+        passwd = password
         tag_followers_dict = instagram_tags_scraper(user_n, passwd, tag)
         print("tag_followers_dict >> ", tag_followers_dict)
         # return HttpResponse("success")
@@ -54,24 +55,25 @@ def get_hashtag_details(request):
         # writer = csv.writer(response, delimiter=',')  # I always like to specify the delimeter
 
         writer = csv.writer(response)
-        writer.writerow(['instagram url', 'Name', 'followers'])
+        # writer.writerow(['instagram url', 'Name', 'followers'])
+        writer.writerow(['instagram url', 'Name'])
 
         # Then you may actually want to write some data to the CSV file, currently, you've only defined the headers (first row). An example would be like:
         for i in range(len(tag_followers_dict["instagram url"])):
             writer.writerow([
                 tag_followers_dict["instagram url"][i],
                 tag_followers_dict["Name"][i],
-                tag_followers_dict["followers"][i]
+                # tag_followers_dict["followers"][i]
             ])
 
         return response
 
     tag = request.GET["hashtag_inp"]
     print("tag >> ", tag)
-    user_n = 'jennifergoenka'
-    passwd = '111213'
+    user_n = username
+    passwd = password
     tag_followers_dict = instagram_tags_scraper(user_n, passwd, tag)
-    print("tag_followers_dict >> ", tag_followers_dict)
+    # print("tag_followers_dict >> ", tag_followers_dict)
     # return HttpResponse("success")
 
     response = HttpResponse(content_type='text/csv',
@@ -82,14 +84,15 @@ def get_hashtag_details(request):
     # writer = csv.writer(response, delimiter=',')  # I always like to specify the delimeter
 
     writer = csv.writer(response)
-    writer.writerow(['instagram url', 'Name', 'followers'])
+    # writer.writerow(['instagram url', 'Name', 'followers'])
+    writer.writerow(['instagram url', 'Name'])
 
     # Then you may actually want to write some data to the CSV file, currently, you've only defined the headers (first row). An example would be like:
     for i in range(len(tag_followers_dict["instagram url"])):
         writer.writerow([
             tag_followers_dict["instagram url"][i],
             tag_followers_dict["Name"][i],
-            tag_followers_dict["followers"][i]
+            # tag_followers_dict["followers"][i]
         ])
 
     return response
