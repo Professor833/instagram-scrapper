@@ -21,10 +21,12 @@ import os
 import pandas as pd
 from .count_number_of_followers import count_followers_from_username
 from pathlib import Path
+from webdriver_manager.chrome import ChromeDriverManager
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# CHROME_DRIVER_PATH = Path(BASE_DIR, 'chromedriver.exe')
+print("BASE_DiR >>> ", BASE_DIR)
+CHROME_DRIVER_PATH = Path(BASE_DIR, 'chromedriver.exe')
+print("CHROME_DRIVER_PATH >>> ", CHROME_DRIVER_PATH)
 # CHROME_DRIVER_PATH = r"C:\Users\Dell\Downloads\chromedriver_win32\chromedriver.exe"
 
 # GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
@@ -50,16 +52,17 @@ def merge_dicts(dict1, dict2):
 
 def instagram_tags_scraper(username, password, tag, page=0, max_id=""):
     # for prod env
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+    # chrome_options = webdriver.ChromeOptions()
+    # chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    # chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--disable-dev-shm-usage")
+    # chrome_options.add_argument("--no-sandbox")
+    # driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
 
     # driver = webdriver.Chrome(CHROME_DRIVER_PATH, chrome_options=chrome_options)
     # for running Locally
     # driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH)
+    driver = webdriver.Chrome(ChromeDriverManager().install())
     print(f'-----STARTED FETCHING DATA FOR #{tag}------')
 
     tag_followers_dict = {

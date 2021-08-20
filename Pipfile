@@ -13,6 +13,7 @@ requests = "*"
 instagramy = "*"
 gunicorn = "*"
 whitenoise = "*"
+webdriver-manager = "*"
 
 [dev-packages]
 
